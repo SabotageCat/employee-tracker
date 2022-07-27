@@ -11,18 +11,6 @@ const menuOptions = [
 
 const addDepartment = [
     {
-        type: 'number',
-        name: 'id',
-        message: 'Enter the department ID',
-        validate: (answer) => {
-            if (!answer) {
-                console.log('You must enter the ID!');
-                return false
-            } 
-            return true
-        }
-    },
-    {
         type: 'input',
         name: 'name',
         message: 'Enter the department name',
@@ -37,18 +25,6 @@ const addDepartment = [
 ];
 
 const addRole =[
-    {
-        type: 'number',
-        name: 'id',
-        message: 'Enter the role ID',
-        validate: answer => {
-            if (!answer) {
-                console.log('You must enter the role ID!');
-                return false
-            }
-            return true
-        }
-    },
     {
         type: 'input',
         name: 'title',
@@ -89,15 +65,59 @@ const addRole =[
 
 const addEmployee = [
     {
-        type: 'number',
-        name: 'id',
-        message: "Enter this employee ID",
+        type: 'input',
+        name: 'first_name',
+        message: "Enter ths employee's name",
         validate: answer => {
             if (!answer) {
-                console.log('You must enter the employee ID!');
+                console.log("You must enter the employee's first name!");
                 return false
             }
             return true
+        }
+    },
+    {
+        input: 'input',
+        name: 'last_name',
+        message: "Enter this employee's last name",
+        validate: answer => {
+            if (!answer) {
+                console.log("You must enter this employee's last name!");
+                return false
+            }
+            return true
+        }
+    },
+    {
+        input: 'number',
+        name: 'role_id',
+        message: "Enter this employee's role ID",
+        validate: answer => {
+            if (!answer) {
+                console.log("You must enter this employee's role ID!");
+                return false
+            }
+            return true
+        }
+    },
+    {
+        input: 'number',
+        name: 'manager_id',
+        message: "Enter the manager ID for this employee"
+    }
+];
+
+const editEmployee = [
+    {
+        type: 'number',
+        name: 'id',
+        message: 'Enter the employee ID number',
+        validate: answer => {
+            if (!answer) {
+                console.log('You must enter an employee ID number!');
+                return false;
+            }
+            return true;
         }
     },
     {
@@ -225,7 +245,7 @@ const addToTable = option => {
 };
 
 const updateEmployee = () => {
-    return inquirer.prompt(addEmployee)
+    return inquirer.prompt(editEmployee)
     .then(data => {
         console.log(data, data.id);
 
