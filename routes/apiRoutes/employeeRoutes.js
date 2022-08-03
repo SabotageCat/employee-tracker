@@ -39,9 +39,23 @@ router.put('/employees/:id', ({ body }, res) => {
         if (err) {
             res.status(400).json({ error: err.message });
         } else if (!result.affectedRows) {
-            res.status(400).json({ message: 'Employee not found!' });
+            res.status(404).json({ message: 'Employee not found!' });
         } else {
             res.status(200).json({ message: 'Success!', data: body, changes: result.affectedRows });
+        }
+    });
+});
+
+router.delete('/employees/:id', (req, res) => {
+    const sql = `DELETE FROM employee WHERE id = ?`;
+
+    db.query(sql, req.params.id, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: err.message });
+        } else if (!result.affectedRows) {
+            res.status(404).json({ message: 'Employee not found!' });
+        } else {
+            res.status(200).json({ message: 'Deleted employee!', changes: result.affectedRows, id: req.params.id });
         }
     });
 });
