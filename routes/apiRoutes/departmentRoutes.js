@@ -32,7 +32,7 @@ router.get('/departments/:id', (req, res) => {
     });
 });
 
-router.post('/departments', (req, res) => {
+router.post('/departments', ({ body }, res) => {
     const sql = `INSERT INTO department (name) VALUES (?)`;
     const params = [body.name];
 
@@ -43,3 +43,5 @@ router.post('/departments', (req, res) => {
         res.status(200).json({ message: 'Success!', data: body });
     });
 });
+
+module.exports = router;

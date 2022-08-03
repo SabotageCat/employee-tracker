@@ -19,7 +19,7 @@ router.get('/roles', (req, res) => {
     });
 });
 
-router.post('/roles', (req, res) => {
+router.post('/roles', ({ body }, res) => {
     const sql = `INSERT INTO role (title, salary, department_id) VALUES (?,?,?)`;
     const params = [body.title, body.salary, body.department_id];
 
@@ -30,3 +30,5 @@ router.post('/roles', (req, res) => {
         res.status(200).json({ message: 'Success!', data: body });
     });
 });
+
+module.exports = router;
