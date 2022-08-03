@@ -20,8 +20,8 @@ router.get('/employees', (req, res) => {
 });
 
 router.post('/employees', ({ body }, res) => {
-    const sql = `INSERT INTO employee (first_name, last_name, role_id, department_id, manager_id) VALUES (?,?,?,?,?)`;
-    const params = [body.first_name, body.last_name, body.role_id, body.department_id, body.manager_id];
+    const sql = `INSERT INTO employee (first_name, last_name, roles_id, department_id, manager_id) VALUES (?,?,?,?,?)`;
+    const params = [body.first_name, body.last_name, body.roles_id, body.department_id, body.manager_id];
 
     db.query(sql, params, (err, result) => {
         if (err) {
@@ -32,8 +32,8 @@ router.post('/employees', ({ body }, res) => {
 });
 
 router.put('/employees/:id', ({ body }, res) => {
-    const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
-    const params = [body.role_id, body.id];
+    const sql = `UPDATE employee SET roles_id = ? WHERE id = ?`;
+    const params = [body.roles_id, body.id];
 
     db.query(sql, params, (err, result) => {
         if (err) {

@@ -4,7 +4,7 @@ const db = require('../../db/connection');
 
 // get all roles
 router.get('/roles', (req, res) => {
-    const sql = `SELECT * FROM role`;
+    const sql = `SELECT * FROM roles`;
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -20,7 +20,7 @@ router.get('/roles', (req, res) => {
 });
 
 router.post('/roles', ({ body }, res) => {
-    const sql = `INSERT INTO role (title, salary, department_id) VALUES (?,?,?)`;
+    const sql = `INSERT INTO roles (title, salary, department_id) VALUES (?,?,?)`;
     const params = [body.title, body.salary, body.department_id];
 
     db.query(sql, params, (err, result) => {
